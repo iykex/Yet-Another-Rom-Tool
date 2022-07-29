@@ -1,6 +1,6 @@
 @shift /0
 @echo off
-title System Unpack/Repack Tool 1.0 (unpack_mod)
+title Yet Another Rom Tool(1.0)
 Setlocal EnableDelayedExpansion
 :error
 :skipme
