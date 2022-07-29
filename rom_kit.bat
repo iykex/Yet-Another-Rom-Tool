@@ -34,14 +34,14 @@ cls
 mode con:cols=104 lines=30
 echo.
 echo.
-bin\utils\cecho                              {60} System Unpack/Repack Tool {#}
+bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
-echo                         by mr.vybes - Telegram: @nanavybes 
-bin\utils\cecho                                     {0d}=============={#}
+echo                          by mr.vybes - Telegram: @nanavybes 
+bin\utils\cecho                                    {0d}=============={#}
 echo.
 bin\utils\cecho                {30} Yet another unpack/repack tool 'for Android ROM images {#} 
 echo.
-bin\utils\cecho                                 {0e}thanks to @jancox-tool{#}
+bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
 bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
@@ -82,14 +82,14 @@ cls
 mode con:cols=104 lines=30
 echo.
 echo.
-bin\utils\cecho                              {60} System Unpack/Repack Tool {#}
+bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
-echo                         by mr.vybes - Telegram: @nanavybes 
-bin\utils\cecho                                     {0d}=============={#}
+echo                          by mr.vybes - Telegram: @nanavybes 
+bin\utils\cecho                                    {0d}=============={#}
 echo.
 bin\utils\cecho                {30} Yet another unpack/repack tool 'for Android ROM images {#} 
 echo.
-bin\utils\cecho                                 {0e}thanks to @jancox-tool{#}
+bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
 bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
@@ -156,14 +156,14 @@ cls
 mode con:cols=104 lines=30
 echo.
 echo.
-bin\utils\cecho                              {60} System Unpack/Repack Tool {#}
+bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
-echo                         by mr.vybes - Telegram: @nanavybes 
-bin\utils\cecho                                     {0d}=============={#}
+echo                          by mr.vybes - Telegram: @nanavybes 
+bin\utils\cecho                                    {0d}=============={#}
 echo.
 bin\utils\cecho                {30} Yet another unpack/repack tool 'for Android ROM images {#} 
 echo.
-bin\utils\cecho                                 {0e}thanks to @jancox-tool{#}
+bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
 bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
@@ -222,14 +222,14 @@ cls
 mode con:cols=104 lines=30
 echo.
 echo.
-bin\utils\cecho                              {60} System Unpack/Repack Tool {#}
+bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
-echo                         by mr.vybes - Telegram: @nanavybes 
-bin\utils\cecho                                     {0d}=============={#}
+echo                          by mr.vybes - Telegram: @nanavybes 
+bin\utils\cecho                                    {0d}=============={#}
 echo.
 bin\utils\cecho                {30} Yet another unpack/repack tool 'for Android ROM images {#} 
 echo.
-bin\utils\cecho                                 {0e}thanks to @jancox-tool{#}
+bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
 bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
@@ -246,14 +246,14 @@ cls
 mode con:cols=104 lines=30
 echo.
 echo.
-bin\utils\cecho                              {60} System Unpack/Repack Tool {#}
+bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
-echo                         by mr.vybes - Telegram: @nanavybes 
-bin\utils\cecho                                     {0d}=============={#}
+echo                          by mr.vybes - Telegram: @nanavybes 
+bin\utils\cecho                                    {0d}=============={#}
 echo.
 bin\utils\cecho                {30} Yet another unpack/repack tool 'for Android ROM images {#} 
 echo.
-bin\utils\cecho                                 {0e}thanks to @jancox-tool{#}
+bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
 bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
@@ -270,14 +270,14 @@ cls
 mode con:cols=104 lines=30
 echo.
 echo.
-bin\utils\cecho                              {60} System Unpack/Repack Tool {#}
+bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
-echo                         by mr.vybes - Telegram: @nanavybes 
-bin\utils\cecho                                     {0d}=============={#}
+echo                          by mr.vybes - Telegram: @nanavybes 
+bin\utils\cecho                                    {0d}=============={#}
 echo.
 bin\utils\cecho                {30} Yet another unpack/repack tool 'for Android ROM images {#} 
 echo.
-bin\utils\cecho                                 {0e}thanks to @jancox-tool{#}
+bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
 bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
@@ -294,14 +294,14 @@ cls
 mode con:cols=104 lines=30
 echo.
 echo.
-bin\utils\cecho                              {60} System Unpack/Repack Tool {#}
+bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
-echo                         by mr.vybes - Telegram: @nanavybes 
-bin\utils\cecho                                     {0d}=============={#}
+echo                          by mr.vybes - Telegram: @nanavybes 
+bin\utils\cecho                                    {0d}=============={#}
 echo.
 bin\utils\cecho                {30} Yet another unpack/repack tool 'for Android ROM images {#} 
 echo.
-bin\utils\cecho                                 {0e}thanks to @jancox-tool{#}
+bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
 bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
