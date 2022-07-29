@@ -143,18 +143,19 @@ if "%rmsysimg%"=="n" goto skip_del_img
 
 :remove_img
 if exist place_img_here\system.img del place_img_here\system.img
-if not exist echo nothing found
+if not exist place_img_here\system.img echo  checking...
 if exist place_img_here\system.raw.img del place_img_here\system.raw.img
-if not exist echo nothing found
+if not exist place_img_here\system.raw.img echo  checking...
 bin\utils\cecho {0e} - file removed!{#}
 echo.
+echo.
+pause
+goto home
 
 :skip_del_img
 if exist place_img_here\system.raw.img del place_img_here\system.raw.img
-if not exist echo nothing found
-bin\utils\cecho {0e} - file kept!{#}
-echo.
-
+if not exist place_img_here\system.raw.img echo 'nothing found
+if exist place_img_here\system.img bin\utils\cecho {0e} - file kept!{#}
 echo.
 echo.
 pause
