@@ -58,7 +58,7 @@ bin\utils\ctext "    {0e}1. *Unpack system.img{0e}        {0e}3. *Unpack new.dat
 echo.
 bin\utils\ctext "    {0f}        --------{0f}                    {0f}--------{0f}                    {0f}--------{0f}{\n}"
 echo.
-bin\utils\ctext "    {0e}2. *Repack system.img{0e}        {0e}4. *Repack new.dat{0e}        {0e}6. *Unpack new.dat.br{0e}{\n}"
+bin\utils\ctext "    {0e}2. *Repack system.img{0e}        {0e}4. *Repack new.dat{0e}        {0e}6. *Repack new.dat.br{0e}{\n}"
 echo.
 echo.
 echo.
