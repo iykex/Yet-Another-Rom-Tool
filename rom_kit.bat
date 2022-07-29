@@ -139,11 +139,19 @@ echo.
 set /p rmsysimg=_Do you want to remove old system.img [yes/no]? :  
 echo.
 if "%rmsysimg%"=="y" goto remove_img
+if "%rmsysimg%"=="n" goto skip_del_img
 
 :remove_img
 del place_img_here\system.img
+del place_img_here\system.raw.img
 bin\utils\cecho {0e} - file removed!{#}
 echo.
+
+:skip_del_img
+del place_img_here\system.raw.img
+bin\utils\cecho {0e} - file kept!{#}
+echo.
+
 echo.
 echo.
 pause
