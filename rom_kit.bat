@@ -44,7 +44,7 @@ echo.
 bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
-bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
+bin\utils\cecho                  {0b}%activity% {#}{60} %date%{#} / {0b}%activitytime% {#}{20} %time%{#}
 echo.
 bin\utils\cecho    {0b}    ***********************************************************************{#}
 echo.
@@ -92,7 +92,7 @@ echo.
 bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
-bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
+bin\utils\cecho                  {0b}%activity% {#}{60} %date%{#} / {0b}%activitytime% {#}{20} %time%{#}
 echo.
 bin\utils\cecho    {0b}    ***********************************************************************{#}
 echo.
@@ -166,7 +166,7 @@ echo.
 bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
-bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
+bin\utils\cecho                  {0b}%activity% {#}{60} %date%{#} / {0b}%activitytime% {#}{20} %time%{#}
 echo.
 bin\utils\cecho    {0b}    ***********************************************************************{#}
 echo.
@@ -232,7 +232,7 @@ echo.
 bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
-bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
+bin\utils\cecho                  {0b}%activity% {#}{60} %date%{#} / {0b}%activitytime% {#}{20} %time%{#}
 echo.
 bin\utils\cecho    {0b}    ***********************************************************************{#}
 echo.
@@ -256,7 +256,7 @@ echo.
 bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
-bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
+bin\utils\cecho                  {0b}%activity% {#}{60} %date%{#} / {0b}%activitytime% {#}{20} %time%{#}
 echo.
 bin\utils\cecho    {0b}    ***********************************************************************{#}
 echo.
@@ -280,7 +280,7 @@ echo.
 bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
-bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
+bin\utils\cecho                  {0b}%activity% {#}{60} %date%{#} / {0b}%activitytime% {#}{20} %time%{#}
 echo.
 bin\utils\cecho    {0b}    ***********************************************************************{#}
 echo.
@@ -304,7 +304,7 @@ echo.
 bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
 echo.
 echo.
-bin\utils\cecho                  {0b}%activity% {#}{60} %recent%{#} / {0b}%activitytime% {#}{20} %time%{#}
+bin\utils\cecho                  {0b}%activity% {#}{60} %date%{#} / {0b}%activitytime% {#}{20} %time%{#}
 echo.
 bin\utils\cecho    {0b}    ***********************************************************************{#}
 echo.
