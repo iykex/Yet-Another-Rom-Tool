@@ -32,7 +32,7 @@ goto home
 
 :home
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
@@ -98,7 +98,7 @@ echo.
 
 :cleanup
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -149,7 +149,7 @@ goto home
 
 :unpack_rom
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -267,7 +267,7 @@ goto home
 
 :repack_rom
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -378,7 +378,7 @@ bin\utils\7za a -tzip new_rom.zip ./auto_unpack/extracted/tmp/*  >nul 2>nul
 
 if exist auto_unpack\extracted\tmp\new_rom.zip (
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -432,7 +432,7 @@ goto home
 
 :unpack_image
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -455,7 +455,7 @@ echo.
 bin\utils\cecho {0b} - Unpack into "accessible system"{#}
 echo.
 echo.
-if exist manual_unpack\extracted rd /s /q extracted
+if exist manual_unpack\extracted rd /s /q manual_unpack\extracted
 if not exist manual_unpack\extracted mkdir manual_unpack\extracted
 if exist manual_unpack\place_img_here\system.img (
 echo system.img file found
@@ -471,13 +471,13 @@ goto home
 if exist manual_unpack\place_img_here\system.img (
 bin\utils\cecho {0b} - Unpacking "system.img"{#}
 echo.
-bin\utils\imgextractor place_img_here\system.img extracted\system >nul 2>nul
+bin\utils\imgextractor manual_unpack\place_img_here\system.img extracted\system >nul 2>nul
 )
 
 set tmp=manual_unpack\place_img_here\
-if exist %tmp%\system_file_contexts move /y %tmp%\system_file_contexts extracted\  >nul 2>nul
-if exist %tmp%\system_fs_config move /y %tmp%\system_fs_config extracted\  >nul 2>nul
-if exist %tmp%\system move /y %tmp%\system extracted\system2  >nul 2>nul
+if exist %tmp%\system_file_contexts move /y %tmp%\system_file_contexts manual_unpack\extracted\  >nul 2>nul
+if exist %tmp%\system_fs_config move /y %tmp%\system_fs_config manual_unpack\extracted\  >nul 2>nul
+if exist %tmp%\system move /y %tmp%\system manual_unpack\extracted\system2  >nul 2>nul
 
 if exist manual_unpack\extracted\system (
 bin\utils\cecho {0b} - "system.img" Unpack Done!{#}
@@ -486,7 +486,7 @@ bin\utils\busybox sh ./bin/utils/utility_manual.sh rom-info
 bin\utils\busybox sh ./bin/utils/utility_manual.sh rom-info >> maual_unpack/extracted/rom-info
 echo.
 )
-if exist manual_unpack\extracted rd /s /q bin\tmp
+if exist manual_unpack\extracted rd /s /q manual_unpack\extracted\tmp
 echo.
 echo.
 set /p rmsysimg=_Do you want to remove old system.img [yes/no]? :  
@@ -518,7 +518,7 @@ goto home
 
 :repack_image
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -587,7 +587,7 @@ goto home
 
 :unpack_dat
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -648,7 +648,7 @@ goto home
 
 :repack_dat
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -742,7 +742,7 @@ echo.
 
 :unpack_br
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -812,7 +812,7 @@ goto home
 
 :repack_br
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -862,7 +862,7 @@ goto home
 
 :unpack_vendor
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -927,7 +927,7 @@ goto home
 
 :repack_vendor
 cls
-mode con:cols=90 lines=45
+mode con:cols=100 lines=38
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
