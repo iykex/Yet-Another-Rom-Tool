@@ -541,6 +541,9 @@ echo.
 bin\utils\cecho {0b} - Repack into "system.img"{#}
 echo.
 echo.
+if exist manual_unpack\place_img_here\tmp rd /s /q manual_unpack\place_img_here\tmp
+if not exist manual_unpack\place_img_here\tmp mkdir manual_unpack\place_img_here\tmp
+mkdir 
 if exist manual_unpack\extracted\system (
 bin\utils\busybox sh ./bin/utils/utility_manual.sh rom-info
 echo.
@@ -567,8 +570,8 @@ if exist repack_done rd /s /q repack_done
 
 set /p systemsize=<"manual_unpack\extracted\system_size.txt"
 echo - Repacking into system-image
-mkdir place_img_here\tmp
-bin\utils\make_ext4fs -s -L system -T -1 -S manual_unpack\extracted\system_file_contexts -C manual_unpack\extracted\system_fs_config -l %systemsize% -a system place_img_here\tmp\system.new.img extracted\system\ >nul 
+
+bin\utils\make_ext4fs -s -L system -T -1 -S manual_unpack\extracted\system_file_contexts -C manual_unpack\extracted\system_fs_config -l %systemsize% -a system place_img_here\tmp\system.new.img manual_unpack\extracted\system\ >nul 
 echo.
 
 set tmp=manual_unpack\repack_done
