@@ -1,6 +1,6 @@
 #
 
-path=./manual_unpack/extracted/
+path=./manual_unpack/extracted
 rominfo=$path/rom.info
 
 #functions
@@ -23,8 +23,7 @@ fi;
 case $1 in
 rom-info)
 echo "  - Android Version = $(getprop ro.build.version.release= $path/$system/build.prop) "
-echo "  - Name ROM        = $(getprop ro.build.display.id $path/$system/build.prop) "
-echo "  - Device          = $(getprop ro.product.product.model $path/$system/product/etc/build.prop) "
+echo "  - Build ID        = $(getprop ro.build.display.id $path/$system/build.prop) "
 echo "  - System-as-root  = $systemroot "
 ;;
 esac			

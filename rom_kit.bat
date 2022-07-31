@@ -32,7 +32,7 @@ goto home
 
 :home
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
 echo.  
@@ -50,10 +50,9 @@ bin\utils\cecho    {0b}    *****************************************************
 echo.
 echo.
 echo                                Toolbox : pick a choice
-bin\utils\ctext "                            {0b}=============================={0b}
+bin\utils\ctext "                            {0b}=============================={0b}{\n}"
 echo.
-bin\utils\ctext "                                    {0a}c. *Cleanup!!!{0e}
-echo.
+bin\utils\ctext "                               {0a}[c] *Cleanup!!!{0e} // {0c}[e] *Exit{0e}{\n}"
 echo.
 bin\utils\cecho   {0b}=========={#}
 echo.
@@ -61,7 +60,7 @@ bin\utils\cecho   {0b}   AUTO  {#}
 echo.
 bin\utils\cecho   {0b}=========={#}
 echo.
-bin\utils\ctext "    {0e}a. *Unpack ROM.zip{0e}       {0e}r. *Repack ROM.zip{0e}{\n}"
+bin\utils\ctext "    {0e}[a] *Unpack ROM.zip{0e}       {0e}[r] *Repack ROM.zip{0e}{\n}"
 echo.
 bin\utils\cecho   {0b}=========={#}
 echo.
@@ -69,11 +68,11 @@ bin\utils\cecho   {0b}  MANUAL {#}
 echo.
 bin\utils\cecho   {0b}=========={#}
 echo.
-bin\utils\ctext "    {0e}1. *Unpack system.img{0e}    {0e}3. *Unpack new.dat{0e}    {0e}5. *Unpack new.dat.br{0e}    {0e}7. *Unpack vendor{0e}{\n}"
+bin\utils\ctext "    {0e}[1] *Unpack system.img{0e}    {0e}[3] *Unpack new.dat{0e}    {0e}[5] *Unpack new.dat.br{0e}    {0e}[7] *Unpack vendor{0e}{\n}"
 echo.
-bin\utils\ctext "    {0f}        --------{0f}              {0f}  --------{0f}              {0f}  --------{0f}              {0f}--------{0f}{\n}"
+bin\utils\ctext "    {0f}        --------{0f}              {0f}  --------{0f}                {0f}  --------{0f}              {0f}  --------{0f}{\n}"
 echo.
-bin\utils\ctext "    {0e}2. *Repack system.img{0e}    {0e}4. *Repack new.dat{0e}    {0e}6. *Repack new.dat.br{0e}    {0e}8. *Repack vendor{0e}{\n}"
+bin\utils\ctext "    {0e}[2] *Repack system.img{0e}    {0e}[4] *Repack new.dat{0e}    {0e}[6] *Repack new.dat.br{0e}    {0e}[8] *Repack vendor{0e}{\n}"
 echo.
 echo.
 bin\utils\cecho {0f}   
@@ -98,7 +97,7 @@ echo.
 
 :cleanup
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -148,7 +147,7 @@ goto home
 
 :unpack_rom
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -230,7 +229,7 @@ del auto_unpack\extracted\tmp\vendor.img
 )
 
 mkdir auto_unpack\extracted\extra
-set tmp=auto_unpack\extracted\
+set tmp=auto_unpack\extracted\tmp
 if exist %tmp%\system_file_contexts move /y %tmp%\system_file_contexts auto_unpack\extracted\extra\  >nul 2>nul
 if exist %tmp%\vendor_file_contexts move /y %tmp%\vendor_file_contexts auto_unpack\extracted\extra\  >nul 2>nul
 if exist %tmp%\system_fs_config move /y %tmp%\system_fs_config auto_unpack\extracted\extra\  >nul 2>nul
@@ -266,7 +265,118 @@ goto home
 
 :repack_rom
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
+echo.
+echo.
+bin\utils\cecho                                {60} Yet Another Rom Tool {#}
+echo.  
+echo                          by mr.vybes - Telegram: @nanavybes 
+bin\utils\cecho                                    {0d}=============={#}
+echo.
+bin\utils\cecho                {30} Yet another unpack/repack tool 'for Android ROM images {#} 
+echo.
+bin\utils\cecho                                {0e}thanks to @jancox-tool{#}
+echo.
+echo.
+bin\utils\cecho                  {0b}%activity% {#}{60} %date%{#} / {0b}%activitytime% {#}{20} %time%{#}
+echo.
+bin\utils\cecho    {0b}    ***********************************************************************{#}
+echo.
+echo.
+bin\utils\cecho {0b} - Processing...{#}
+echo.
+echo.
+if exist auto_unpack\extracted\system (
+bin\utils\busybox sh ./bin/utils/utility_auto.sh rom-info
+echo.
+)
+if exist auto_unpack\new_rom.zip del auto_unpack\new_rom.zip
+if exist auto_unpack\tmp rd /s /q auto_unpack\tmp
+if exist auto_unpack\extracted\tmp rd /s /q auto_unpack\extracted\tmp
+if not exist auto_unpack\extracted\tmp mkdir auto_unpack\extracted\tmp
+
+if exist auto_unpack\extracted\system_size.txt (
+bin\utils\cecho {0b} - Repacking to ROM.zip!{#}
+echo.
+)
+
+set /p systemsize=<"auto_unpack\extracted\system_size.txt"
+bin\utils\cecho    {0b} - Repack System Image!{#}
+echo.
+bin\utils\make_ext4fs -s -T 0 -S auto_unpack\extracted\extra\system_file_contexts -C auto_unpack\extracted\extra\system_fs_config -l %systemsize% -a system auto_unpack\extracted\tmp\system.new.img auto_unpack\extracted\system\ >nul
+
+bin\utils\cecho    {0b} - Repack Vendor-Image!{#}
+echo.
+if not exist auto_unpack\extracted\extra\vendor_file_contexts (
+echo.
+bin\utils\ctext "{0c}    !# SKIPPING VENDOR BUILD -- 'vendor_file_contexts' not exist,{0c}{\n}
+bin\utils\ctext "{0c}    add a prebuilt 'vendor_file_contexts(file_contexts)'{0c}{\n}
+bin\utils\ctext "{0c}    & continue or manually add a compiled vendor.new.dat(.br){0c}{\n}"
+bin\utils\ctext "{0c}    to your ROM.zip when completed{0c}{\n}"
+echo.
+) else (
+set /p vendorsize=<"auto_unpack\extracted\vendor_size.txt"
+bin\utils\make_ext4fs -s -T 0 -S auto_unpack\extracted\extra\vendor_file_contexts -C auto_unpack\extracted\extra\vendor_fs_config -l %vendorsize% -a vendor auto_unpack\extracted\tmp\vendor.new.img auto_unpack\extracted\vendor\ >nul
+)
+
+if exist auto_unpack\extracted\tmp (
+if exist auto_unpack\extracted\tmp\system.new.img (
+bin\utils\cecho    {0b} - Repack to system.new.dat{#}
+echo.
+bin\utils\img2sdat auto_unpack\extracted\tmp\system.new.img -o auto_unpack\extracted\tmp -v 4 >nul 2>nul
+del auto_unpack\extracted\tmp\system.new.img
+)
+
+if exist auto_unpack\extracted\tmp\vendor.new.img (
+bin\utils\cecho    {0b} - Repacking to vendor.new.dat{#}
+echo.
+bin\utils\img2sdat auto_unpack\extracted\tmp\vendor.new.img -o auto_unpack\extracted\tmp -v 4 -p vendor >nul 2>nul
+del auto_unpack\extracted\tmp\vendor.new.img
+)
+
+if exist auto_unpack\extracted\tmp\system.new.dat (
+bin\utils\cecho    {0b} - Repacking to system.new.dat.br{#}
+echo.
+bin\utils\brotli -1 -j -w 24 auto_unpack\extracted\tmp\system.new.dat >nul 
+)
+
+if exist auto_unpack\tmp\vendor.new.dat (
+bin\utils\cecho    {0b} - Repacking to vendor.new.dat.br{#}
+echo.
+bin\utils\brotli -1 -j -w 24 auto_unpack\extracted\tmp\vendor.new.dat >nul
+)
+)
+
+if exist auto_unpack\extracted\tmp\system.new.dat.br (
+echo.
+bin\utils\cecho    {0b} - Finalizing...{#}
+echo.
+set tmp=auto_unpack\extracted\extra
+set tmp1=auto_unpack\extracted\tmp
+if exist %tmp%\extra\boot.img copy /y %tmp%\extra\boot.img %tmp1%\ >nul 2>nul
+if exist %tmp%\extra\dtbo.img copy /y %tmp%\extra\dtbo.img %tmp1%\ >nul 2>nul
+if exist %tmp%\extra\vbmeta.img copy /y %tmp%\extra\vbmeta.img %tmp1%\ >nul 2>nul
+if exist %tmp%\extra\compatibility.zip copy /y %tmp%\extra\compatibility.zip %tmp1% >nul
+if exist %tmp%\extra\compatibility_no_nfc.zip copy /y %tmp%\extra\compatibility_no_nfc.zip %tmp1% >nul
+if exist %tmp%\extra\install xcopy /i /e /y %tmp%\extra\install %tmp%1\install >nul 2>nul
+if exist %tmp%\extra\firmware-update xcopy /i /e %tmp%\extra\firmware-update %tmp1%\firmware-update >nul 2>nul
+if exist %tmp%\extra\META-INF xcopy /i /e /y %tmp%\extra\META-INF %tmp1%\META-INF >nul 2>nul
+if exist %tmp%\extra\system2 xcopy /i /e /y auto_unpack\extracted\system2 %tmp1%\system >nul 2>nul
+
+bin\utils\cecho    {0b} - Zipping...{#}
+bin\utils\7za a -tzip new_rom.zip ./auto_unpack/extracted/tmp/*  >nul 2>nul
+)
+
+@REM if exist auto_unpack\extracted\tmp\META-INF (
+@REM bin\utils\cecho    {0b} - Zipping...{#}
+@REM bin\utils\7za a -tzip new_rom.zip ./auto_unpack/extracted/tmp/*  >nul 2>nul
+@REM )
+
+
+
+if exist auto_unpack\extracted\tmp\new_rom.zip (
+cls
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -285,121 +395,42 @@ bin\utils\cecho    {0b}    *****************************************************
 echo.
 echo.
 echo.
+bin\utils\busybox mv auto_unpack\extracted\tmp\new_rom.zip auto_unpack\repack_done\ >nul 2>nul
 echo.
+bin\utils\cecho    {0b} Completed!{#}
 echo.
-bin\utils\cecho {0b} - Processing...{#}
+bin\utils\cecho    {0b} ********* {#}
 echo.
-echo.
-if exist auto_unpack\extracted\system (
-bin\utils\busybox sh ./bin/utils/utility_auto.sh rom-info
-echo.
-)
-if exist auto_unpack\new_rom.zip del auto_unpack\new_rom.zip
-if exist auto_unpack\tmp rd /s /q auto_unpack\tmp
-::mkdir auto_unpack\tmp
-
-if exist auto_unpack\extracted\system_size.txt (
-bin\utils\cecho {0b} - Repacking to ROM.zip!{#}
-echo.
-if exist auto_unpack\extracted\system_size.txt (
-set /p systemsize=<"auto_unpack\extracted\system_size.txt"
-bin\utils\cecho    {0b} - Repack system{#}
-echo.
-bin\utils\make_ext4fs -s -L system -T -1 -S auto_unpack\extracted\extra\system_file_contexts -C auto_unpack\extracted\extra\system_fs_config -l %systemsize% -a system auto_unpack\tmp\system.img auto_unpack\extracted\system\ >nul
-)
-
-bin\utils\cecho    {0b} - Repack vendor{#}
-echo.
-if exist auto_unpack\extracted\vendor_size.txt (
-set /p vendorsize=<"auto_unpack\extracted\vendor_size.txt"
-bin\utils\make_ext4fs -s -L vendor -T -1 -S auto_unpack\extracted\vendor_file_contexts -C auto_unpack\extracted\vendor_fs_config -l %vendorsize% -a vendor auto_unpack\tmp\vendor.img auto_unpack\extracted\vendor\ >nul
-)
-
-if exist auto_unpack\tmp\system.img (
-bin\utils\cecho    {0b} - Repack system.img{#}
-echo.
-bin\utils\img2sdat auto_unpack\tmp\system.img -o auto_unpack\tmp -v 4 >nul 2>nul
-del auto_unpack\tmp\system.img
-)
-
-if exist auto_unpack\tmp\vendor.img (
-bin\utils\cecho    {0b} - Repack vendor.img{#}
-echo.
-bin\utils\img2sdat auto_unpack\tmp\vendor.img -o auto_unpack\tmp -v 4 -p vendor >nul 2>nul
-del auto_unpack\tmp\vendor.img
-)
-
-if exist auto_unpack\tmp\system.new.dat (
-bin\utils\cecho    {0b} - Repack system.new.dat{#}
-echo.
-bin\utils\brotli -1 -j -w 24 auto_unpack\tmp\system.new.dat >nul 
-)
-
-if exist auto_unpack\tmp\vendor.new.dat (
-bin\utils\cecho    {0b} - Repack vendor.new.dat{#}
-echo.
-bin\utils\brotli -1 -j -w 24 auto_unpack\tmp\vendor.new.dat >nul
-)
-) else (
-bin\utils\cecho {0c} - there is nothing to repack from "place_img_here"{#}
-echo.
-echo.
-echo.
-pause
-goto home
-echo.
-)
-echo.
-bin\utils\cecho    {0b} - Finalizing...{#}
-echo.
-
-set tmp=auto_unpack\extracted\tmp
-if exist %tmp%\extra\boot.img copy /y %tmp%\extra\boot.img %tmp%\ >nul 2>nul
-if exist %tmp%\extra\dtbo.img copy /y %tmp%\extra\dtbo.img %tmp%\ >nul 2>nul
-if exist %tmp%\extra\vbmeta.img copy /y %tmp%\extra\vbmeta.img %tmp%\ >nul 2>nul
-if exist %tmp%\extra\compatibility.zip copy /y %tmp%\extra\compatibility.zip %tmp% >nul
-if exist %tmp%\extra\compatibility_no_nfc.zip copy /y %tmp%\extra\compatibility_no_nfc.zip %tmp% >nul
-if exist %tmp%\extra\install xcopy /i /e /y %tmp%\extra\install %tmp%\install >nul 2>nul
-if exist %tmp%\extra\firmware-update xcopy /i /e %tmp%\extra\firmware-update %tmp%\firmware-update >nul 2>nul
-if exist %tmp%\extra\META-INF xcopy /i /e /y %tmp%\extra\META-INF %tmp%\META-INF >nul 2>nul
-if exist %tmp%\extra\system2 xcopy /i /e /y auto_unpack\extracted\system2 %tmp%\system >nul 2>nul
-
-if exist auto_unpack\extracted\tmp\META-INF (
-echo - Zipping
-bin\utils\7za a -tzip new_rom.zip ./auto_unpack/extracted/tmp/*  >nul 2>nul
-)
-
-set tmp=auto_unpack\repack_done
-if exist auto_unpack\extracted\tmp\new_rom.zip
-bin\utils\busybox mv auto_unpack\extracted\tmp\new_rom.zip %tmp%\ >nul 2>nul
-
-
-if exist auto_unpack\repack_done\new_rom.zip (
-echo.
-bin\utils\cecho    {0b} - ROM Unpacked into folder "/extracted"{#}
-echo.
-echo.
-bin\utils\cecho    {0b} - ROM Info:{#}
-echo.
+bin\utils\cecho    {0b} ROM Info:{#}
 echo.
 bin\utils\busybox sh ./bin/utils/utility_auto.sh rom-info
 bin\utils\busybox sh ./bin/utils/utility_auto.sh rom-info >> auto_unpack/extracted/rom-info
 echo.
 echo.
 bin\utils\cecho {0a} - "new_rom.zip" Baked! into folder "/repack_done"{#}
-if exist auto_unpack\repack_done\new_rom.zip rd /s /q auto_unpack\tmp
 echo.
-)
+if exist auto_unpack\repack_done\new_rom.zip rd /s /q auto_unpack\extracted\tmp
+echo.
 echo.
 echo.
 pause
 goto home
+) else (
+echo.
+echo.
+bin\utils\cecho    {0c} - Error!!{#}
+echo.
+echo.
+pause
+goto home
+)
+
 
 ::::::::::::::::::::::::::::::::::::::
 
 :unpack_image
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -485,7 +516,7 @@ goto home
 
 :repack_image
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -554,7 +585,7 @@ goto home
 
 :unpack_dat
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -615,7 +646,7 @@ goto home
 
 :repack_dat
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -709,7 +740,7 @@ echo.
 
 :unpack_br
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -779,7 +810,7 @@ goto home
 
 :repack_br
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -829,7 +860,7 @@ goto home
 
 :unpack_vendor
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -894,7 +925,7 @@ goto home
 
 :repack_vendor
 cls
-mode con:cols=90 lines=40
+mode con:cols=90 lines=45
 echo.
 echo.
 bin\utils\cecho                                {60} Yet Another Rom Tool {#}
@@ -950,7 +981,6 @@ if exist place_vendor_here\vendor.new.dat del place_vendor_here\vendor.new.dat
 if exist place_vendor_here\vendor.new.img del place_vendor_here\vendor.new.img
 
 set tmp=manual_unpack\repack_done
-::bin\utils\busybox rm -rf %tmp%\*
 if exist place_vendor_here\vendor.new.dat.br
 bin\utils\busybox mv place_vendor_here\vendor.new.dat.br %tmp%\ >nul 2>nul
 bin\utils\busybox mv place_vendor_here\vendor.transfer.list %tmp%\ >nul 2>nul
