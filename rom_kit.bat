@@ -471,7 +471,7 @@ goto home
 if exist manual_unpack\place_img_here\system.img (
 bin\utils\cecho {0b} - Unpacking "system.img"{#}
 echo.
-bin\utils\imgextractor manual_unpack\place_img_here\system.img extracted\system >nul 2>nul
+bin\utils\imgextractor manual_unpack\place_img_here\system.img manual_unpack\extracted\system >nul 2>nul
 )
 
 set tmp=manual_unpack\place_img_here\
