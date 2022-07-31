@@ -543,6 +543,8 @@ echo.
 echo.
 if exist manual_unpack\place_img_here\tmp rd /s /q manual_unpack\place_img_here\tmp
 if not exist manual_unpack\place_img_here\tmp mkdir manual_unpack\place_img_here\tmp
+if exist manual_unpack\repack_done rd /s /q manual_unpack\repack_done
+if not exist manual_unpack\repack_done mkdir manual_unpack\repack_done
 
 if exist manual_unpack\extracted\system (
 bin\utils\busybox sh ./bin/utils/utility_man.sh rom-info
@@ -557,8 +559,6 @@ pause
 goto home
 echo.
 )
-if exist manual_unpack\repack_done rd /s /q manual_unpack\repack_done
-::if not exist repack_done mkdir repack_done
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::TODO for custom system_size
@@ -577,7 +577,7 @@ echo.
 
 if exist manual_unpack\place_img_here\tmp\system.new.img (
 set tmp=manual_unpack\repack_done
-bin\utils\busybox mv place_img_here\tmp\system.new.img %tmp%\ >nul 2>nul
+bin\utils\busybox mv manual_unpack\place_img_here\tmp\system.new.img %tmp%\ >nul 2>nul
 )
 
 echo.
