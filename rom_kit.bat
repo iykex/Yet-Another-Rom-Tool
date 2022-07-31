@@ -132,8 +132,9 @@ bin\utils\busybox rm -rf manual_unpack\extracted\
 bin\utils\busybox rm -rf manual_unpack\place_img_here\
 bin\utils\busybox rm -rf manual_unpack\place_dat_here\
 bin\utils\busybox rm -rf manual_unpack\place_br_here\
+bin\utils\busybox rm -rf manual_unpack\place_vendor_here\
 bin\utils\busybox rm -rf manual_unpack\repack_done\
-mkdir auto_unpack\extracted auto_unpack\repack_done manual_unpack\extracted manual_unpack\repack_done manual_unpack\place_br_here manual_unpack\place_dat_here manual_unpack\place_img_here
+mkdir auto_unpack\extracted auto_unpack\repack_done manual_unpack\extracted manual_unpack\repack_done manual_unpack\place_br_here manual_unpack\place_dat_here manual_unpack\place_img_here manual_unpack\place_vendor_here
 )
 echo.
 echo.
