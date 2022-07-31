@@ -89,6 +89,7 @@ if "%web%"=="4" goto repack_dat
 if "%web%"=="5" goto unpack_br
 if "%web%"=="6" goto repack_br
 if "%web%"=="c" goto cleanup
+if "%web%"=="e" exit
 goto home 
 
 echo.
