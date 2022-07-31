@@ -456,8 +456,8 @@ bin\utils\cecho {0b} - Unpack into "accessible system"{#}
 echo.
 echo.
 if exist manual_unpack\extracted rd /s /q extracted
-if not exist extracted mkdir extracted
-if exist place_img_here\system.img (
+if not exist manual_unpack\extracted mkdir manual_unpack\extracted
+if exist manual_unpack\place_img_here\system.img (
 echo system.img file found
 ) else (
 bin\utils\cecho {0c} - system.img not found in "place_img_here"{#}
@@ -468,13 +468,13 @@ pause
 goto home
 )
 
-if exist place_img_here\system.img (
+if exist manual_unpack\place_img_here\system.img (
 bin\utils\cecho {0b} - Unpacking "system.img"{#}
 echo.
 bin\utils\imgextractor place_img_here\system.img extracted\system >nul 2>nul
 )
 
-set tmp=place_img_here\
+set tmp=manual_unpack\place_img_here\
 if exist %tmp%\system_file_contexts move /y %tmp%\system_file_contexts extracted\  >nul 2>nul
 if exist %tmp%\system_fs_config move /y %tmp%\system_fs_config extracted\  >nul 2>nul
 if exist %tmp%\system move /y %tmp%\system extracted\system2  >nul 2>nul
@@ -495,10 +495,10 @@ if "%rmsysimg%"=="y" goto remove_img
 if "%rmsysimg%"=="n" goto skip_del_img
 
 :remove_img
-if exist place_img_here\system.img del place_img_here\system.img
-if not exist place_img_here\system.img echo  checking...
-if exist place_img_here\system.raw.img del place_img_here\system.raw.img
-if not exist place_img_here\system.raw.img echo  checking...
+if exist manual_unpack\place_img_here\system.img del manual_unpack\place_img_here\system.img
+if not exist manual_unpack\place_img_here\system.img echo  checking...
+if exist manual_unpack\place_img_here\system.raw.img del manual_unpack\place_img_here\system.raw.img
+if not exist manual_unpack\place_img_here\system.raw.img echo  checking...
 bin\utils\cecho {0e} - file removed!{#}
 echo.
 echo.
@@ -506,9 +506,9 @@ pause
 goto home
 
 :skip_del_img
-if exist place_img_here\system.raw.img del place_img_here\system.raw.img
-if not exist place_img_here\system.raw.img echo 'nothing found
-if exist place_img_here\system.img bin\utils\cecho {0e} - file kept!{#}
+if exist manual_unpack\place_img_here\system.raw.img del manual_unpack\place_img_here\system.raw.img
+if not exist manual_unpack\place_img_here\system.raw.img echo 'nothing found
+if exist manual_unpack\place_img_here\system.img bin\utils\cecho {0e} - file kept!{#}
 echo.
 echo.
 pause
@@ -572,7 +572,7 @@ bin\utils\make_ext4fs -s -L system -T -1 -S manual_unpack\extracted\system_file_
 echo.
 
 set tmp=manual_unpack\repack_done
-if exist place_img_here\tmp\system.new.img 
+if exist manual_unpack\place_img_here\tmp\system.new.img 
 bin\utils\busybox mv place_img_here\system.new.img %tmp%\ >nul 2>nul
 
 echo.
@@ -612,14 +612,14 @@ bin\utils\cecho {0f} ** be sure that [system.new.dat] & [system.transfer.list]{#
 bin\utils\cecho {0f}   are already placed into the folder **{#}
 echo.
 echo.
-if exist place_dat_here\system.new.dat (
+if exist manual_unpack\place_dat_here\system.new.dat (
 bin\utils\cecho {0b} - Unpacking...{#}
 bin\utils\sdat2img place_dat_here\system.transfer.list place_dat_here\system.new.dat place_dat_here\system.new.img >nul 2>nul
-if exist place_dat_here\system.new.dat place_dat_here\system.transfer.list place_dat_here\system.patch.dat del place_dat_here\system.new.dat place_dat_here\system.transfer.list place_dat_here\system.patch.dat 
+if exist manual_unpack\place_dat_here\system.new.dat place_dat_here\system.transfer.list place_dat_here\system.patch.dat del place_dat_here\system.new.dat place_dat_here\system.transfer.list place_dat_here\system.patch.dat 
 if not exist place_dat_here\system.transfer.list place_dat_here\system.patch.dat echo 'files removed
 )
 
-if exist place_dat_here\system.new.img (
+if exist manual_unpack\place_dat_here\system.new.img (
 bin\utils\cecho {0b} - working[lvl 01]...{#}
 echo.
 bin\utils\imgextractor place_dat_here\system.new.img extracted\system >nul 2>nul
@@ -685,16 +685,16 @@ echo.
 pause   
 goto home
 ) else ( 
-if exist place_dat_here\system.new.img (
+if exist manual_unpack\place_dat_here\system.new.img (
 bin\utils\cecho {0b} - Repack "system.new.dat"{#}
 echo.
-if exist place_dat_here\system.new.dat del place_dat_here\system.new.dat
+if exist manual_unpack\place_dat_here\system.new.dat del place_dat_here\system.new.dat
 bin\utils\cecho {0b} - working[lvl 01!]...{#}
 bin\utils\img2sdat place_dat_here\system.new.img -o place_dat_here -v 4 >nul 2>nul
 )
 )
 del place_dat_here\system.new.img
-if exist place_dat_here\system.new.dat.br del place_dat_here\system.new.dat.br
+if exist manual_unpack\place_dat_here\system.new.dat.br del place_dat_here\system.new.dat.br
 
 set tmp=manual_unpack\repack_done
 
@@ -718,12 +718,12 @@ bin\utils\make_ext4fs -s -L system -T -1 -S manual_unpack\extracted\system_file_
 echo.
 bin\utils\cecho {0b} - working[lvl 01!]...{#}
 echo.
-if exist place_dat_here\system.new.img 
+if exist manual_unpack\place_dat_here\system.new.img 
 bin\utils\cecho {0b} - working[lvl 02!]...{#}
-if exist place_dat_here\system.new.dat del place_dat_here\system.new.dat
+if exist manual_unpack\place_dat_here\system.new.dat del place_dat_here\system.new.dat
 bin\utils\img2sdat place_dat_here\system.new.img -o repack_done -v 4 >nul 2>nul
 del place_dat_here\system.new.img
-if exist place_dat_here\system.new.dat.br del place_dat_here\system.new.dat.br
+if exist manual_unpack\place_dat_here\system.new.dat.br del place_dat_here\system.new.dat.br
 echo.
 set tmp=manual_unpack\repack_done
 bin\utils\busybox mv place_dat_here\system.new.dat %tmp%\ >nul 2>nul
@@ -768,22 +768,22 @@ bin\utils\cecho {0f}   are already placed into the folder **{#}
 echo.
 echo.
 
-if exist place_br_here\system.new.dat.br (
+if exist manual_unpack\place_img_here\system.new.dat.br (
 bin\utils\cecho {0b} - Unpacking...{#}
 bin\utils\brotli -d place_br_here\system.new.dat.br >nul
-if exist place_br_here\system.new.dat.br del place_br_here\system.new.dat.br
+if exist manual_unpack\place_img_here\system.new.dat.br del place_br_here\system.new.dat.br
 bin\utils\cecho {0b} - old system.new.dat.br removed
 echo.
 )
 
-if exist place_br_here\system.new.dat (
+if exist manual_unpack\place_img_here\system.new.dat (
 bin\utils\cecho {0b} - working[lvl 02]...{#}
 bin\utils\sdat2img place_br_here\system.transfer.list place_br_here\system.new.dat place_br_here\system.img >nul 2>nul
-if exist place_br_here\system.new.dat place_br_here\system.transfer.list place_br_here\system.patch.dat del place_br_here\system.new.dat place_br_here\system.transfer.list place_br_here\system.patch.dat 
+if exist manual_unpack\place_img_here\system.new.dat place_br_here\system.transfer.list place_br_here\system.patch.dat del place_br_here\system.new.dat place_br_here\system.transfer.list place_br_here\system.patch.dat 
 if not exist place_br_here\system.transfer.list place_br_here\system.patch.dat echo 'files removed
 )
 
-if exist place_br_here\system.new.img (
+if exist manual_unpack\place_img_here\system.new.img (
 bin\utils\cecho {0b} - working[lvl 01]...{#}
 echo.
 bin\utils\imgextractor place_br_here\system.new.img extracted\system >nul 2>nul
@@ -832,11 +832,11 @@ echo.
 echo.
 echo.
 echo.
-if exist place_br_here\system.new.dat.br del repack_done\system.new.dat.br ( 
+if exist manual_unpack\place_img_here\system.new.dat.br del repack_done\system.new.dat.br ( 
 bin\utils\cecho {0b} - working[lvl 01]...{#}
 )
 echo.
-if exist place_br_here\system.new.dat echo bin\utils\cecho {0e} required file ... OK!{#} (
+if exist manual_unpack\place_img_here\system.new.dat echo bin\utils\cecho {0e} required file ... OK!{#} (
 ::bin\utils\img2sdat repack_done\system.new.img -o repack_done -v 4 >nul 2>nul
 bin\utils\brotli -1 -j -w 24 place_br_here\system.new.dat >nul 
 
