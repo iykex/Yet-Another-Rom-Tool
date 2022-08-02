@@ -570,18 +570,13 @@ echo.
 ::set /p new_size=_Enter size in bytes :  
 ::echo %new_size%>>manual_unpack\extracted\system_size.txt
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-@REM if exist manual_unpack\extracted\system (
+
 set /p systemsize=<"manual_unpack\extracted\system_size.txt"
 bin\utils\cecho    {0b} - Repack System Image!{#}
 echo.
 bin\utils\make_ext4fs -s -T 0 -S manual_unpack\extracted\system_file_contexts -C manual_unpack\extracted\system_fs_config -l %systemsize% -a system manual_unpack\place_img_here\tmp\system.new.img manual_unpack\extracted\system\ >nul
+bin\utils\busybox mv manual_unpack\place_img_here\tmp\system.new.img manual_unpack\repack_done\ >nul 2>nul
 echo.
-@REM )
-
-if exist manual_unpack\place_img_here\tmp\system.new.img (
-set tmp=manual_unpack\repack_done
-bin\utils\busybox mv manual_unpack\place_img_here\tmp\system.new.img %tmp%\ >nul 2>nul
-)
 
 echo.
 bin\utils\cecho {0a} - new file "system.new.img" Baked! into folder "/repack_done"{#}
@@ -890,28 +885,27 @@ echo.
 echo.
 echo.
 echo.
-if not exist manual_unpack\place_vendor_here\vendor.new.dat.br (
 bin\utils\cecho {0b} - Unpacking "vendor.new.dat.br"{#}
 echo.
-bin\utils\cecho {0f} ** be sure that [vendor.patch.dat] & [vendor.transfer.list]{#}
+bin\utils\cecho {0f} ** be sure that vendor.patch.dat, vendor.transfer.list{#}
 echo.
 bin\utils\cecho {0f}   are already placed into the folder **{#}
 echo.
 echo.
-)
+
 
 if exist manual_unpack\place_vendor_here\vendor.new.dat.br (
 (
 bin\utils\cecho {0b} - Unpack vendor.new.dat.br{#}
 echo.
-bin\windows\brotli -d manual_unpack\place_vendor_here\vendor.new.dat.br >nul
+bin\utils\brotli -d manual_unpack\place_vendor_here\vendor.new.dat.br >nul
 del manual_unpack\place_vendor_here\vendor.new.dat.br
 )
 
 if exist manual_unpack\place_vendor_here\vendor.new.dat (
 bin\utils\cecho {0b} - Unpack vendor.new.dat{#}
 echo.
-bin\windows\sdat2img manual_unpack\place_vendor_here\vendor.transfer.list manual_unpack\place_vendor_here\vendor.new.dat manual_unpack\place_vendor_here\vendor.img >nul 2>nul
+bin\utils\sdat2img manual_unpack\place_vendor_here\vendor.transfer.list manual_unpack\place_vendor_here\vendor.new.dat manual_unpack\place_vendor_here\vendor.img >nul 2>nul
 del manual_unpack\place_vendor_here\vendor.new.dat
 del manual_unpack\place_vendor_here\vendor.transfer.list
 del manual_unpack\place_vendor_here\vendor.patch.dat
@@ -920,14 +914,14 @@ del manual_unpack\place_vendor_here\vendor.patch.dat
 if exist manual_unpack\place_vendor_here\vendor.img (
 bin\utils\cecho {0b} - Unpack vendor.img{#}
 echo.
-bin\windows\imgextractor manual_unpack\place_vendor_here\vendor.img manual_unpack\extracted\vendor >nul 2>nul
+bin\utils\imgextractor manual_unpack\place_vendor_here\vendor.img manual_unpack\extracted\vendor >nul 2>nul
 del manual_unpack\place_vendor_here\vendor.img
 )
 ) else (
 if exist manual_unpack\place_vendor_here\vendor.img (
 bin\utils\cecho {0b} - Unpack vendor.img{#}
 echo.
-bin\windows\imgextractor manual_unpack\place_vendor_here\vendor.img manual_unpack\extracted\vendor >nul 2>nul
+bin\utils\imgextractor manual_unpack\place_vendor_here\vendor.img manual_unpack\extracted\vendor >nul 2>nul
 del manual_unpack\place_vendor_here\vendor.img
 )
 )
@@ -939,7 +933,7 @@ echo.
 bin\utils\cecho {0b} - check "/extracted" 'for files{#}
 echo.
 )
-if exist manual_unpack\extracted\vendor rd /s /q manual_unpack\place_vendor_here
+if exist manual_unpack\extracted\vendor rd /s /q manual_unpack\place_vendor_here\*
 echo.
 echo.
 pause
@@ -996,19 +990,20 @@ bin\utils\img2sdat manual_unpack\place_vendor_here\vendor.new.img -o manual_unpa
 del manual_unpack\place_vendor_here\vendor.new.img
 )
 
-if exist manual_unpack\place_vendor_here\vendor.new.dat (
+@REM if exist manual_unpack\place_vendor_here\vendor.new.dat
 bin\utils\cecho {0b} - Repack to 'vendor.new.dat.br'{#}
 echo.
 bin\utils\brotli -1 -j -w 24 manual_unpack\place_vendor_here\vendor.new.dat >nul
-)
 if exist manual_unpack\place_vendor_here\vendor.new.dat del manual_unpack\place_vendor_here\vendor.new.dat
 if exist manual_unpack\place_vendor_here\vendor.new.img del manual_unpack\place_vendor_here\vendor.new.img
 
+
+if exist manual_unpack\place_vendor_here\vendor.new.dat.br (
 set tmp=manual_unpack\repack_done
-if exist manual_unpack\place_vendor_here\vendor.new.dat.br
 bin\utils\busybox mv manual_unpack\place_vendor_here\vendor.new.dat.br %tmp%\ >nul 2>nul
 bin\utils\busybox mv manual_unpack\place_vendor_here\vendor.transfer.list %tmp%\ >nul 2>nul
 bin\utils\busybox mv manual_unpack\place_vendor_here\vendor.patch.dat %tmp%\ >nul 2>nul
+)
 
 echo.
 bin\utils\cecho {0a} - new file "vendor.new.dat" Baked! into folder "/repack_done"{#}
